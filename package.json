@@ -7,10 +7,10 @@
     "start": "concurrently \"kill-port 5000 && kill-port 3000 && npm run server\" \"wait-on http://localhost:5000 && npm run client\"",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
+    "postinstall": "npm install --legacy-peer-deps",
     "client:start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client" 
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-
   "author": "Hritambhar",
   "license": "ISC",
   "dependencies": {
@@ -27,8 +27,8 @@
     "mongoose": "^8.4.3",
     "path-browserify": "^1.0.1",
     "react-redux": "^9.1.2",
-    "react-scripts": "^3.0.1",
-    "redux": "^5.0.1",
+    "react-scripts": "^5.0.1",
+    "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "request": "^2.88.2",
     "stream-browserify": "^3.0.0",
@@ -50,7 +50,6 @@
     "nodemon": "^3.1.4",
     "react-app-rewired": "^2.2.1",
     "wait-on": "^7.2.0",
-    "webpack": "^5.92.1",
     "webpack-cli": "^5.1.4"
   }
 }
