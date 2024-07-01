@@ -64,6 +64,6 @@
     "buffer": "^6.0.3"
   },
   "engines": {
-    "node": "16.x"
+    "node": "20.x"
   }
 }
