@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { createProfile, getCurrentProfile } from '../../action/profile';
+
 const EditProfile = ({
   profile: { profile, loading },
   createProfile,
@@ -13,10 +14,9 @@ const EditProfile = ({
     status: '',
     company: '',
     website: '',
-    skills: '',
+    skills: '', // Keep this key
     bio: '',
     location: '',
-    skills: '',
     youtube: '',
     twitter: '',
     instagram: '',
@@ -25,6 +25,7 @@ const EditProfile = ({
     githubusername: '',
   });
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
+
   useEffect(() => {
     getCurrentProfile();
     setFormData({
@@ -34,15 +35,18 @@ const EditProfile = ({
       bio: loading || !profile.bio ? '' : profile.bio,
       location: loading || !profile.location ? '' : profile.location,
       skills: loading || !profile.skills ? '' : profile.skills.join(','),
-      youtube: loading || !profile.youtube ? '' : profile.social.youtube,
-      twitter: loading || !profile.twitter ? '' : profile.social.twitter,
-      instagram: loading || !profile.instagram ? '' : profile.social.instagram,
-      linkedin: loading || !profile.linkedin ? '' : profile.social.linkedin,
-      facebook: loading || !profile.facebook ? '' : profile.social.facebook,
+      youtube: loading || !profile.social.youtube ? '' : profile.social.youtube,
+      twitter: loading || !profile.social.twitter ? '' : profile.social.twitter,
+      instagram:
+        loading || !profile.social.instagram ? '' : profile.social.instagram,
+      linkedin:
+        loading || !profile.social.linkedin ? '' : profile.social.linkedin,
+      facebook:
+        loading || !profile.social.facebook ? '' : profile.social.facebook,
       githubusername:
         loading || !profile.githubusername ? '' : profile.githubusername,
     });
-  }, [loading]);
+  }, [loading, getCurrentProfile, profile]);
 
   const {
     status,
@@ -69,10 +73,9 @@ const EditProfile = ({
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Create Your Profile</h1>
+      <h1 className='large text-primary'>Edit Your Profile</h1>
       <p className='lead'>
-        <i className='fas fa-user'></i> Let's get some information to make your
-        profile stand out
+        <i className='fas fa-user'></i> Add some changes to your profile
       </p>
       <small>* = required field</small>
       <form className='form' onSubmit={(e) => onSubmit(e)}>
@@ -243,9 +246,10 @@ const EditProfile = ({
 
 EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
 };
+
 const mapStateToProps = (state) => ({
   profile: state.profile,
 });

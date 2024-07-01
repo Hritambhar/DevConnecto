@@ -10,10 +10,9 @@ const CreateProfile = ({ createProfile }) => {
     status: '',
     company: '',
     website: '',
-    skills: '',
+    skills: '', // Keep this key
     bio: '',
     location: '',
-    skills: '',
     youtube: '',
     twitter: '',
     instagram: '',
