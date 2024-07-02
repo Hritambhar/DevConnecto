@@ -5,14 +5,15 @@ import PostItem from './PostItem';
 import PostForm from './PostForm';
 import { getPosts } from '../../action/post';
 import Spinner from '../layout/Spinner';
-const Posts = ({ getPosts, post: { posts, loading } }) => {
+
+const Posts = ({ getPosts, post: { posts = [], loading } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
-  return loading ? (
-    <Spinner />
-  ) : (
+  console.log('Posts Component - Posts:', posts); // Add console log for debugging
+
+  return (
     <Fragment>
       <h1 className='large text-primary'>Posts</h1>
       <p className='lead'>
@@ -20,9 +21,14 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       </p>
       <PostForm />
       <div className='posts'>
-        {posts.map((post) => (
-          <PostItem key={post._id} post={post} />
-        ))}
+        {loading ? (
+          <Spinner /> // Display spinner while loading
+        ) : posts.length > 0 ? (
+          posts.map((post) => <PostItem key={post._id} post={post} />)
+        ) : (
+          // Handle case where there are no posts
+          <h4>No posts found</h4>
+        )}
       </div>
     </Fragment>
   );
