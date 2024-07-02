@@ -10,7 +10,7 @@ const Profiles = ({ getProfiles, profile: { profiles = [], loading } }) => {
     getProfiles();
   }, [getProfiles]);
 
-  console.log('Profiles Component - Profiles:', profiles);
+  console.log('Profiles Component - Profiles:', profiles); // Check for data structure
   console.log('Profiles Component - Loading:', loading);
 
   return (
