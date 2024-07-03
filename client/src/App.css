@@ -19,9 +19,6 @@ body {
   line-height: 1.6;
   background-color: #fff;
   color: #333;
-  height: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 a {
@@ -306,16 +303,13 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.7rem 1rem;
+  padding: 0.7rem 2rem;
   position: fixed;
   z-index: 1;
   width: 100%;
   top: 0;
   border-bottom: solid 1px var(--primary-color);
   opacity: 0.9;
-  height: auto; /* Allow navbar to adjust its height */
-  padding-top: 1rem; /* Adjust padding as needed */
-  padding-bottom: 1rem; 
 }
 
 .navbar ul {
@@ -336,13 +330,11 @@ button {
   margin-right: 0.6rem;
 }
 
+/* Landing Page */
 .landing {
   position: relative;
   background: url('./img/showcase.jpg') no-repeat center center/cover;
   height: 100vh;
-  width: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 .landing-inner {
@@ -355,10 +347,9 @@ button {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0;
-
 }
 
+/* Profiles Page */
 .profile {
   display: grid;
   grid-template-columns: 2fr 4fr 2fr;
