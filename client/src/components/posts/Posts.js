@@ -6,7 +6,7 @@ import PostForm from './PostForm';
 import { getPosts } from '../../action/post';
 import Spinner from '../layout/Spinner';
 
-const Posts = ({ getPosts, post: { posts = [], loading } }) => {
+const Posts = ({ getPosts, post: { posts = [], loading, error } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
@@ -23,10 +23,11 @@ const Posts = ({ getPosts, post: { posts = [], loading } }) => {
       <div className='posts'>
         {loading ? (
           <Spinner /> // Display spinner while loading
-        ) : posts && posts.length > 0 ? (
+        ) : error ? (
+          <div className='alert alert-danger'>Error fetching posts</div>
+        ) : posts.length > 0 ? (
           posts.map((post) => <PostItem key={post._id} post={post} />)
         ) : (
-          // Handle case where there are no posts
           <h4>No posts found</h4>
         )}
       </div>
@@ -39,6 +40,7 @@ Posts.propTypes = {
   post: PropTypes.shape({
     posts: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired,
+    error: PropTypes.object, // Allow for error object
   }).isRequired,
 };
 
