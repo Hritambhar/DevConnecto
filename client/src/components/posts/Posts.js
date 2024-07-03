@@ -23,7 +23,7 @@ const Posts = ({ getPosts, post: { posts = [], loading } }) => {
       <div className='posts'>
         {loading ? (
           <Spinner /> // Display spinner while loading
-        ) : posts.length > 0 ? (
+        ) : posts && posts.length > 0 ? (
           posts.map((post) => <PostItem key={post._id} post={post} />)
         ) : (
           // Handle case where there are no posts
@@ -36,7 +36,10 @@ const Posts = ({ getPosts, post: { posts = [], loading } }) => {
 
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired,
+  post: PropTypes.shape({
+    posts: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => ({
